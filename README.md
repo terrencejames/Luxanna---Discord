@@ -16,13 +16,13 @@ permissions with.
 
 Version 1.0.0
 
--*!status*
+- *!status*
 If Luxanna responds, the bot is correctly configured and online.
 
--*!rank [summoner-name]*
+- *!rank [summoner-name]*
 Returns the SoloQ rank of the given summoner name.
 
--*!level [summoner-name]*
+- *!level [summoner-name]*
 Returns the level of the given summoner name.
 
 ## To-Do/Known Bugs
