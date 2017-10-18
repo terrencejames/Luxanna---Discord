@@ -1,0 +1,14 @@
+{
+  "name": "luxanna-bot",
+  "version": "1.0.0",
+  "description": "Personal League of Legends Bot",
+  "main": "luxanna.js",
+  "author": "Terrence James Diaz",
+  "dependencies": {},
+  "devDependencies": {
+    "discord.io": "^2.5.3",
+    "request": "^2.83.0",
+    "requests": "^0.2.2",
+    "winston": "^2.4.0"
+  }
+}
