@@ -33,8 +33,8 @@ key that doesn't exist and returns an error.
 - [ ] Differentiate between ranks of different queue types.
 - [ ] Add a command that tries to analyze whether a given player might be on "tilt"
 - [ ] Add a command that highlights a given player's best played match in their most recent games.
-- [ ] Elemental transformation support (!)
-- [ ] Pipe Lux quotes into audio stream
+- [ x ] Elemental transformation support (!)
+- [ x ] Pipe Lux quotes into audio stream
 - [ ] More stuff in the future
 
 ## Legal
