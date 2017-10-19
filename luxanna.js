@@ -3,6 +3,8 @@ var Discord = require('discord.io');
 var logger = require('winston');
 var auth = require('./auth.json');
 var riot = require('./riot.js');
+var fs = require("fs");
+var VCID = auth.kappa_token;
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
@@ -56,8 +58,121 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                         to: channelID,
                         message: `${rank[0].playerOrTeamName}'s Summoner's Rift 5x5 Solo Rank: ${rank[0].tier} ${rank[0].rank} ${rank[0].leaguePoints}LP`
                     });
-                }); 
+                });
+            break;
+            case 'dark':
+                bot.joinVoiceChannel(VCID, function(err, events) {
+                    var audioFile = 'darkR.oga';
+                    playAudio(VCID, audioFile);
+                });
+                bot.sendMessage({
+                    to: channelID,
+                    message: "FADE!"
+                });
+            break;
+            case 'light':
+                bot.joinVoiceChannel(VCID, function(err, events) {
+                    var audioFile = 'lightR.oga';
+                    playAudio(VCID, audioFile);
+                });
+                bot.sendMessage({
+                    to: channelID,
+                    message: "INCANDESCE!"
+                });
+            break;
+            case 'nature':
+                bot.joinVoiceChannel(VCID, function(err, events) {
+                    var audioFile = 'natureR.oga';
+                    playAudio(VCID, audioFile);
+                });
+                bot.sendMessage({
+                    to: channelID,
+                    message: "KA-BLOOM!"
+                });
+            break;
+            case 'water':
+                bot.joinVoiceChannel(VCID, function(err, events) {
+                    var audioFile = 'waterR.oga';
+                    playAudio(VCID, audioFile);
+                });
+                bot.sendMessage({
+                    to: channelID,
+                    message: "GEYSER!"
+                });
+            break;
+            case 'mystic':
+                bot.joinVoiceChannel(VCID, function(err, events) {
+                    var audioFile = 'mysticR.oga';
+                    playAudio(VCID, audioFile);
+                });
+                bot.sendMessage({
+                    to: channelID,
+                    message: "MYSTIC SPIRAL!"
+                });
+            break;
+            case 'fire':
+                bot.joinVoiceChannel(VCID, function(err, events) {
+                    var audioFile = 'fireR.oga';
+                    playAudio(VCID, audioFile);
+                });
+                bot.sendMessage({
+                    to: channelID,
+                    message: "INFERNO!"
+                });
+            break;
+            case 'magma':
+                bot.joinVoiceChannel(VCID, function(err, events) {
+                    var audioFile = 'magmaR.oga';
+                    playAudio(VCID, audioFile);
+                });
+                bot.sendMessage({
+                    to: channelID,
+                    message: "LAVA FOUNTAIN!"
+                });
+            break;
+            case 'ice':
+                bot.joinVoiceChannel(VCID, function(err, events) {
+                    var audioFile = 'iceR.oga';
+                    playAudio(VCID, audioFile);
+                });
+                bot.sendMessage({
+                    to: channelID,
+                    message: "FREEZE!"
+                });
+            break;
+            case 'storm':
+                bot.joinVoiceChannel(VCID, function(err, events) {
+                    var audioFile = 'stormR.oga';
+                    playAudio(VCID, audioFile);
+                });
+                bot.sendMessage({
+                    to: channelID,
+                    message: "LIGHTNING BOLT!"
+                });
+            break;
+            case 'air':
+                bot.joinVoiceChannel(VCID, function(err, events) {
+                    var audioFile = 'airR.oga';
+                    playAudio(VCID, audioFile);
+                });
+                bot.sendMessage({
+                    to: channelID,
+                    message: "CYCLONE!"
+                });
+            break;
+
             // Just add any case commands if you want to..
          }
      }
 });
+
+function playAudio(channel, file) {
+    bot.getAudioContext(VCID, function(err, stream) {
+    if (err) return console.error(err);
+    stream.on('error', console.log);
+    fs.createReadStream(file).pipe(stream, {end: false});
+    stream.on('done', function() {
+        bot.leaveVoiceChannel(VCID);
+    });
+    });
+}
