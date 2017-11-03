@@ -3,6 +3,7 @@
 *"Lighting the way"*
 
 A Simple League of Legends Discord Bot
+
 by Terrence James Diaz
 
 ## About
@@ -18,44 +19,52 @@ permissions with.
 
 Version 1.1.0
 
+#### Elementalist Luxanna
 Luxanna is currently based off of Elementalist Lux, so she can transform freely into
 10 different elements that could change the responses to the commands below. 
 
 Currently supported elements:
--Light (default)
--Dark
--Fire
--Water
--Ice
--Nature
--Mystic
--Magma
--Air
--Storm
+- Light (default)
+- Dark
+- Fire
+- Water
+- Ice
+- Nature
+- Mystic
+- Magma
+- Air
+- Storm
 
-### Commands 
+#### Commands 
 
--*!status*
+- *!status*
+
 If Luxanna responds, the bot is correctly configured and online.
 
--*!rank [summoner-name]*
+- *!rank [summoner-name]*
+
 Returns the SoloQ rank of the given summoner name.
 
--*!level [summoner-name]*
+- *!level [summoner-name]*
+
 Returns the level of the given summoner name.
 
--*!google [query]*
+- *!google [query]*
+
 Returns a Google link using the "I'm Feeling Lucky" function on the given query.
 
--*!transform [element]*
+- *!transform [element]*
+
 Change Luxanna into the given element. The default element is Light. Will also
 shout the Lux quote of the new element in the voice channel. 
 
--*!ult*
+- *!ult*
+
 Joins the voice channel and shouts the Lux ultimate line of the current element and 
 quotes the text in the text channel as well.
 
--*!laugh*
+- *!laugh*
+
 Joins the voice channel and laughs according to the current element.
 
 
