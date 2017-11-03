@@ -4,7 +4,9 @@ var logger = require('winston');
 var auth = require('./auth.json');
 var riot = require('./riot.js');
 var fs = require("fs");
+
 var VCID = auth.kappa_token;
+
 const elements = {
     'air': 'CYCLONE!', 
     'dark': 'FADE!', 
@@ -18,6 +20,26 @@ const elements = {
     'water': 'GEYSER!'
 };
 
+const transformText = {
+    'air': 'AIR!', 
+    'dark': 'DARK!', 
+    'magma': 'MAGMA!', 
+    'nature': 'NATURE!', 
+    'light': 'Light is but one of my weapons.', 
+    'ice': 'ICE!', 
+    'mystic': 'MYSTIC!',
+    'fire': 'FIRE!', 
+    'storm': 'There is a storm brewing!', 
+    'water': 'WATER!'
+};
+
+const testlink = ['testlink'];
+const transform = ['transform'];
+const ult = ['ult'];
+const laugh = ['laugh'];
+const google = ['google'];
+var activeElement = 'light';
+
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(logger.transports.Console, {
@@ -27,13 +49,21 @@ logger.level = 'debug';
 // Initialize Discord Bot
 var bot = new Discord.Client({
    token: auth.bot_token,
-   autorun: true
+   autorun: true,
+
 });
 bot.on('ready', function (evt) {
     logger.info('Connected');
     logger.info('Logged in as: ');
     logger.info(bot.username + ' - (' + bot.id + ')');
+    logger.info('Element: ' + activeElement);
 });
+
+
+bot.on('voiceStateUpdate', function(event) {
+    bot.sendMessage
+});
+
 bot.on('message', function (user, userID, channelID, message, evt) {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
@@ -44,139 +74,167 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         args = args.splice(1);
         console.log(cmd);
         //console.log(elements.indexOf(cmd));
-        switch(true) {
-            // !ping
-            case 'status':
+        // switch(true) {
+        //     // !ping
+        //     case 'status':
+        //         bot.sendMessage({
+        //             to: channelID,
+        //             message: 'Shining bright!'
+        //         });
+        //     break;
+        //     case 'repeat':
+        //         bot.sendMessage({
+        //             to: channelID,
+        //             message: args
+        //         });
+        //     break;
+        //     case 'level':
+        //         logger.info("Command: Level");
+        //         var slevel = riot.summonerLevel(args, function(level){
+        //             bot.sendMessage({
+        //                 to: channelID,
+        //                 message: level.summonerLevel
+        //             });
+        //         }); 
+        //     break;
+        //     case 'rank':
+        //         var srank = riot.summonerRank(args, function(rank){
+        //             bot.sendMessage({
+        //                 to: channelID,
+        //                 message: `${rank[0].playerOrTeamName}'s Summoner's Rift 5x5 Solo Rank: ${rank[0].tier} ${rank[0].rank} ${rank[0].leaguePoints}LP`
+        //             });
+        //         });
+        //     break;
+        //     // case (cmd in elements):
+        //     //     var audioFile = `${cmd}R.oga`
+        //     //     var msg = elements[cmd];
+        //     //     playAudioAndText(VCID, channelID, audioFile, msg);
+        //     // break;
+        //     case (transform.indexOf(cmd) > -1 && args in elements):
+        //         var audioFile = `${args}Transform.oga`;
+        //         var msg = transformText[args];
+        //         activeElement = args;
+        //         playAudioAndText(VCID, channelID, audioFile, msg);
+        //     break;
+        //     case (ult.indexOf(cmd) > -1):
+        //         var audioFile = `${activeElement}R.oga`;
+        //         var msg = elements[activeElement];
+        //         playAudioAndText(VCID, channelID, audioFile, msg);
+        //     break;
+        //     case (laugh.indexOf(cmd) > -1):
+        //         console.log("Laugh " + activeElement);
+        //         var audioFile = `${activeElement}Laugh.oga`;
+        //         var msg = "Hahaha!";
+        //         playAudioAndText(VCID, channelID, audioFile, msg);
+        //     break;
+        //     case (testlink.indexOf(cmd) > -1):
+        //         bot.sendMessage({
+        //             to: channelID,
+        //             message: `http://www.google.com/search?q=term&btnI`
+        //         });
+        //     break;
+        //     case(google.indexOf(cmd) > -1):
+        //         console.log(args);
+        //         var IFLurl = createIFLurl(args);
+        //         console.log(IFLurl);
+        //         bot.sendMessage({
+        //             to: channelID,
+        //             message: IFLurl
+        //         });
+        //     break;
+
+        //     default:
+        //         bot.sendMessage({
+        //             to: channelID,
+        //             message: "Not a valid command!"
+        //         });
+        if (cmd == 'status'){
+            bot.sendMessage({
+                to: channelID,
+                message: 'Shining bright!'
+            });
+        }
+
+        else if (cmd == 'repeat'){
+            bot.sendMessage({
+                to: channelID,
+                message: args
+            });
+        }
+
+        else if (cmd == 'level'){
+            logger.info("Command: Level");
+            var slevel = riot.summonerLevel(args, function(level){
                 bot.sendMessage({
                     to: channelID,
-                    message: 'Shining bright!'
+                    message: level.summonerLevel
                 });
-            break;
-            case 'repeat':
+            });     
+        }
+
+        else if (cmd == 'rank'){
+            var srank = riot.summonerRank(args, function(rank){
                 bot.sendMessage({
                     to: channelID,
-                    message: args
+                    message: `${rank[0].playerOrTeamName}'s Summoner's Rift 5x5 Solo Rank: ${rank[0].tier} ${rank[0].rank} ${rank[0].leaguePoints}LP`
                 });
-            break;
-            case 'level':
-                logger.info("Command: Level");
-                var slevel = riot.summonerLevel(args, function(level){
-                    bot.sendMessage({
-                        to: channelID,
-                        message: level.summonerLevel
-                    });
-                }); 
-            break;
-            case 'rank':
-                var srank = riot.summonerRank(args, function(rank){
-                    bot.sendMessage({
-                        to: channelID,
-                        message: `${rank[0].playerOrTeamName}'s Summoner's Rift 5x5 Solo Rank: ${rank[0].tier} ${rank[0].rank} ${rank[0].leaguePoints}LP`
-                    });
-                });
-            break;
-            // case 'dark':
-            //     bot.joinVoiceChannel(VCID, function(err, events) {
-            //         var audioFile = 'darkR.oga';
-            //         playAudio(VCID, audioFile);
-            //     });
-            //     bot.sendMessage({
-            //         to: channelID,
-            //         message: "FADE!"
-            //     });
-            // break;
-            // case 'light':
-            //     bot.joinVoiceChannel(VCID, function(err, events) {
-            //         var audioFile = 'lightR.oga';
-            //         playAudio(VCID, audioFile);
-            //     });
-            //     bot.sendMessage({
-            //         to: channelID,
-            //         message: "INCANDESCE!"
-            //     });
-            // break;
-            // case 'nature':
-            //     bot.joinVoiceChannel(VCID, function(err, events) {
-            //         var audioFile = 'natureR.oga';
-            //         playAudio(VCID, audioFile);
-            //     });
-            //     bot.sendMessage({
-            //         to: channelID,
-            //         message: "KA-BLOOM!"
-            //     });
-            // break;
-            // case 'water':
-            //     bot.joinVoiceChannel(VCID, function(err, events) {
-            //         var audioFile = 'waterR.oga';
-            //         playAudio(VCID, audioFile);
-            //     });
-            //     bot.sendMessage({
-            //         to: channelID,
-            //         message: "GEYSER!"
-            //     });
-            // break;
-            // case 'mystic':
-            //     bot.joinVoiceChannel(VCID, function(err, events) {
-            //         var audioFile = 'mysticR.oga';
-            //         playAudio(VCID, audioFile);
-            //     });
-            //     bot.sendMessage({
-            //         to: channelID,
-            //         message: "MYSTIC SPIRAL!"
-            //     });
-            // break;
-            // case 'fire':
-            //     bot.joinVoiceChannel(VCID, function(err, events) {
-            //         var audioFile = 'fireR.oga';
-            //         playAudio(VCID, audioFile);
-            //     });
-            //     bot.sendMessage({
-            //         to: channelID,
-            //         message: "INFERNO!"
-            //     });
-            // break;
-            // case 'magma':
-            //     bot.joinVoiceChannel(VCID, function(err, events) {
-            //         var audioFile = 'magmaR.oga';
-            //         playAudio(VCID, audioFile);
-            //     });
-            //     bot.sendMessage({
-            //         to: channelID,
-            //         message: "LAVA FOUNTAIN!"
-            //     });
-            // break;
-            // case 'ice':
-            //     bot.joinVoiceChannel(VCID, function(err, events) {
-            //         var audioFile = 'iceR.oga';
-            //         playAudio(VCID, audioFile);
-            //     });
-            //     bot.sendMessage({
-            //         to: channelID,
-            //         message: "FREEZE!"
-            //     });
-            // break;
-            // case 'storm':
-            //     bot.joinVoiceChannel(VCID, function(err, events) {
-            //         var audioFile = 'stormR.oga';
-            //         playAudio(VCID, audioFile);
-            //     });
-            //     bot.sendMessage({
-            //         to: channelID,
-            //         message: "LIGHTNING BOLT!"
-            //     });
-            // break;
-            case (cmd in elements):
-                var audioFile = `${cmd}R.oga`
-                var msg = elements[cmd];
-                playAudioAndText(VCID, channelID, audioFile, msg);
-            break;
+            });
+        }
+
+        else if (cmd == 'transform' && args in elements){
+            var audioFile = `${args}Transform.oga`;
+            var msg = transformText[args];
+            activeElement = args;
+            playAudioAndText(VCID, channelID, audioFile, msg);
+        }
+
+        else if (cmd == 'ult'){
+            var audioFile = `${activeElement}R.oga`;
+            var msg = elements[activeElement];
+            playAudioAndText(VCID, channelID, audioFile, msg);
+        }
+
+        else if (cmd == 'laugh'){
+            console.log("Laugh " + activeElement);
+            var audioFile = `${activeElement}Laugh.oga`;
+            var msg = "Hahaha!";
+            playAudioAndText(VCID, channelID, audioFile, msg);
+        }
+
+
+        else if (cmd == 'google') {
+            console.log(args);
+            var IFLurl = createIFLurl(args);
+            console.log(IFLurl);
+            bot.sendMessage({
+                to: channelID,
+                message: IFLurl
+            });
+        }
+
+
+        else {
+            bot.sendMessage({
+                to: channelID,
+                message: "Not a valid command!"
+            });
+        }
 
 
             // Just add any case commands if you want to..
-         }
+         
      }
 });
 
+function createIFLurl(args){
+    var basestr = 'http://www.google.com/search?q=';
+    for (var i = 0; i < args.length; i++){
+        basestr += args[i] + '+';
+    }
+    basestr += '&btnI';
+    return basestr;
+    
+}
 function playAudioAndText(VCID, TCID, audio, msg) {
     bot.joinVoiceChannel(VCID, function(err, events) {
         bot.getAudioContext(VCID, function(err, stream) {
@@ -185,6 +243,8 @@ function playAudioAndText(VCID, TCID, audio, msg) {
         fs.createReadStream(audio).pipe(stream, {end: false});
         stream.on('done', function() {
             bot.leaveVoiceChannel(VCID);
+            //fs.createReadStream(audio).pipe(stream, {end: false});
+            // setTimeout( bot.leaveVoiceChannel(VCID), 300000);
         });
         });
     });
