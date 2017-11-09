@@ -4,6 +4,9 @@
   "description": "Personal League of Legends Bot",
   "main": "luxanna.js",
   "author": "Terrence James Diaz",
+  "scripts": {
+    "start": "node luxanna.js"
+  },
   "dependencies": {},
   "devDependencies": {
     "discord.io": "^2.5.3",

@@ -33,11 +33,6 @@ const transformText = {
     'water': 'WATER!'
 };
 
-const testlink = ['testlink'];
-const transform = ['transform'];
-const ult = ['ult'];
-const laugh = ['laugh'];
-const google = ['google'];
 var activeElement = 'light';
 
 // Configure logger settings
