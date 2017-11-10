@@ -6,16 +6,31 @@ A Simple League of Legends Discord Bot
 
 by Terrence James Diaz
 
+terrencejamesdiaz@gmail.com
+
 ## About
 
-Luxanna is a simple bot built in NodeJS that can respond to various commands 
+Luxanna is a simple bot that can respond to various commands 
 in your Discord server pertaining to League of Legends info retrieved from the
 provided Riot API and *other entertaining things*.
+
+## Tech Stack
+
+- [Discord.io](https://github.com/izy521/discord.io) A small, single-file, fully featured Discordapp library for Node.js and browsers.
+- Node.js
+- [Request](https://github.com/request/request) Simplified HTTP request client.
 
 ## Usage
 
 A Discord bot can only be invited to a server that a user has the "Manage Server"
 permissions with. 
+
+In order to make the bot work, you must have an auth.json file filled with:
+
+- A Discord Bot key (bot_token).
+- A Riot API key (riot_key).
+- The channel ID of the the main voice channel you wish to interact with (kappa_token). 
+
 
 Version 1.1.0
 
