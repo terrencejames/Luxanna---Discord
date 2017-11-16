@@ -3,7 +3,9 @@ var Discord = require('discord.io');
 var logger = require('winston');
 var auth = require('./auth.json');
 var riot = require('./riot.js');
+var google = require('./google.js');
 var fs = require("fs");
+
 
 var VCID = auth.kappa_token;
 
@@ -199,11 +201,21 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
         else if (cmd == 'google') {
             console.log(args);
-            var IFLurl = createIFLurl(args);
-            console.log(IFLurl);
-            bot.sendMessage({
-                to: channelID,
-                message: IFLurl
+            var websearch = google.googleWeb(args, function(result){
+                bot.sendMessage({
+                    to: channelID,
+                    message: result
+                });
+            });
+        }
+
+        else if (cmd == 'img') {
+            console.log(args);
+            var imgsearch = google.googleImage(args, function(result){
+                bot.sendMessage({
+                    to: channelID,
+                    message: result
+                });
             });
         }
 

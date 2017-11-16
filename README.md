@@ -66,7 +66,11 @@ Returns the level of the given summoner name.
 
 - *!google [query]*
 
-Returns a Google link using the "I'm Feeling Lucky" function on the given query.
+Searches Google and returns the first web result from the given query.
+
+- *!img [query]*
+Searches Google and returns the first image result from the given query.
+
 
 - *!transform [element]*
 
