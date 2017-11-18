@@ -35,6 +35,9 @@ const transformText = {
     'water': 'WATER!'
 };
 
+const magicconchresponses = ['Maybe someday', 'Nothing.', 'Neither.', 'I don\'t think so.', 
+                            'No.', 'Yes.', 'Try asking again.']
+
 var activeElement = 'light';
 
 // Configure logger settings
@@ -219,6 +222,15 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             });
         }
 
+        else if (cmd == 'magicconch'){
+            if (args){
+                bot.sendMessage({
+                    to: channelID,
+                    message: magicconchresponses[getRandomIntInclusive(0, 6)]
+                });
+            }
+        }
+
 
         else {
             bot.sendMessage({
@@ -241,6 +253,12 @@ function createIFLurl(args){
     basestr += '&btnI';
     return basestr;
     
+}
+
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
 }
 function playAudioAndText(VCID, TCID, audio, msg) {
     bot.joinVoiceChannel(VCID, function(err, events) {

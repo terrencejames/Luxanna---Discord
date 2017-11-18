@@ -3,7 +3,7 @@ var auth = require('./auth.json');
 
 var search = {
 	googleWeb: function(query, callback) {
-		var querystr = ""
+		var querystr = "";
 		for (var i = 0; i < query.length; i++){
         	querystr += query[i] + '+';
     	}
@@ -15,7 +15,7 @@ var search = {
 	},
 
 	googleImage: function(query, callback){
-		var querystr = ""
+		var querystr = "";
 		for (var i = 0; i < query.length; i++){
         	querystr += query[i] + '+';
     	}
