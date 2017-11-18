@@ -222,7 +222,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             });
         }
 
-        else if (cmd == 'magicconch'){
+        else if (cmd == 'conch'){
             if (args){
                 bot.sendMessage({
                     to: channelID,
