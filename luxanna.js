@@ -228,7 +228,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     to: channelID,
                     message: magicconchresponses[getRandomIntInclusive(0, 6)]
                 });
-            }
+            };
         }
 
 
