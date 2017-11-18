@@ -207,9 +207,20 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             var websearch = google.googleWeb(args, function(result){
                 bot.sendMessage({
                     to: channelID,
-                    message: result
+                    message: result.link
                 });
             });
+        }
+
+        else if (cmd == 'info') {
+            console.log(args);
+            var websearch = google.googleWeb(args, function(result){
+                bot.sendMessage({
+                    to: channelID,
+                    message: result.snippet
+                });
+            });
+
         }
 
         else if (cmd == 'img') {
@@ -217,7 +228,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             var imgsearch = google.googleImage(args, function(result){
                 bot.sendMessage({
                     to: channelID,
-                    message: result
+                    message: result.link
                 });
             });
         }

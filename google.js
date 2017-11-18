@@ -10,7 +10,7 @@ var search = {
 		var url = `https://www.googleapis.com/customsearch/v1?q=${querystr}&cx=${auth.cse_token}&key=${auth.google_api}`;
 		request.get(url, (error, response, body) => {
 			let json = JSON.parse(body)
-			return callback(json.items[0].link)
+			return callback(json.items[0])
 		});
 	},
 
@@ -22,7 +22,7 @@ var search = {
 		var url = `https://www.googleapis.com/customsearch/v1?q=${querystr}&cx=${auth.cse_token}&searchType=image&key=${auth.google_api}`;
 		request.get(url, (error, response, body) => {
 			let json = JSON.parse(body)
-			return callback(json.items[0].link)
+			return callback(json.items[0])
 		});
 	}
 
