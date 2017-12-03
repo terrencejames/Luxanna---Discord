@@ -5,6 +5,7 @@ var auth = require('./auth.json');
 var riot = require('./riot.js');
 var google = require('./google.js');
 var fs = require("fs");
+var commands = require('./commands.js');
 
 
 var VCID = auth.kappa_token;
@@ -35,7 +36,7 @@ const transformText = {
     'water': 'WATER!'
 };
 
-const magicconchresponses = ['Maybe someday', 'Nothing.', 'Neither.', 'I don\'t think so.', 
+const magicconchresponses = ['Maybe someday.', 'Nothing.', 'Neither.', 'I don\'t think so.', 
                             'No.', 'Yes.', 'Try asking again.']
 
 var activeElement = 'light';
@@ -148,7 +149,15 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         //             to: channelID,
         //             message: "Not a valid command!"
         //         });
-        if (cmd == 'status'){
+        if (cmd == 'help'){
+            var response = commands.helpmsg(function(result){
+                bot.sendMessage({
+                    to: channelID,
+                    message: result
+                });
+            });
+        }
+        else if (cmd == 'status'){
             bot.sendMessage({
                 to: channelID,
                 message: 'Shining bright!'
