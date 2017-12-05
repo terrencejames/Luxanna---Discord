@@ -2,6 +2,7 @@ var riot = require('./riot.js');
 var google = require('./google.js');
 var conch = require('./conch.js');
 var elements = require('./elements.js');
+var text = require('./sms.js');
 
 
 const cmdList = {
@@ -16,7 +17,8 @@ const cmdList = {
 	"conch": conch.getConchResponse,
 	"level": riot.summonerLevel,
 	"rank": riot.summonerRank,
-	"transform": elements.transform
+	"transform": elements.transform, 
+	"text": text.sendText
 }
 
 function helpmsg(args, callback){

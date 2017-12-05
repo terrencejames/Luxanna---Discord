@@ -46,7 +46,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     to: channelID,
                     message: result
                 });
-            }, bot, VCID);
+            }, bot, VCID, user);
         }
 
         else {

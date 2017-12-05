@@ -10,6 +10,7 @@
   "dependencies": {},
   "devDependencies": {
     "discord.io": "^2.5.3",
+    "nodemailer": "^4.4.0",
     "request": "^2.83.0",
     "requests": "^0.2.2",
     "winston": "^2.4.0"
