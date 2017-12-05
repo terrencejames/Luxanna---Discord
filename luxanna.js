@@ -25,9 +25,11 @@ bot.on('ready', function (evt) {
     logger.info(bot.username + ' - (' + bot.id + ')');
 });
 
-
-bot.on('voiceStateUpdate', function(event) {
-    bot.sendMessage
+bot.on("disconnect", function(err, code) {
+    logger.info("Bot disconnected");
+    logger.info("Error: " + err);
+    logger.info("Code: " + code);
+    bot.connect() //Auto reconnect
 });
 
 bot.on('message', function (user, userID, channelID, message, evt) {
