@@ -3,6 +3,8 @@ var google = require('./google.js');
 var conch = require('./conch.js');
 var elements = require('./elements.js');
 var text = require('./sms.js');
+var audio = require('./playaudio.js');
+var rapgod = require('./rapgod.js');
 
 
 const cmdList = {
@@ -18,7 +20,8 @@ const cmdList = {
 	"level": riot.summonerLevel,
 	"rank": riot.summonerRank,
 	"transform": elements.transform, 
-	"text": text.sendText
+	"text": text.sendText,
+	"rapgod": rapgod.rapgod
 }
 
 function helpmsg(args, callback){

@@ -3,7 +3,7 @@ var Discord = require('discord.io');
 var logger = require('winston');
 var auth = require('./auth.json');
 var commands = require('./commands.js').cmdList;
-var VCID = auth.testkappa_token;
+var VCID = auth.kappa_token;
 
 
 // Configure logger settings
