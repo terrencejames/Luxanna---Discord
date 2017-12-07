@@ -23,7 +23,8 @@ const cmdList = {
 	"transform": elements.transform, 
 	"text": text.sendText,
 	"rapgod": rapgod.rapgod,
-	"bans": championgg.topFiveBans
+	"bans": championgg.topFiveBans,
+	"whocounters": championgg.findCounter
 }
 
 function helpmsg(args, callback){
