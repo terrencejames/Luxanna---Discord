@@ -5,6 +5,7 @@ var elements = require('./elements.js');
 var text = require('./sms.js');
 var audio = require('./playaudio.js');
 var rapgod = require('./rapgod.js');
+var championgg = require('./championgg.js');
 
 
 const cmdList = {
@@ -21,7 +22,8 @@ const cmdList = {
 	"rank": riot.summonerRank,
 	"transform": elements.transform, 
 	"text": text.sendText,
-	"rapgod": rapgod.rapgod
+	"rapgod": rapgod.rapgod,
+	"bans": championgg.topFiveBans
 }
 
 function helpmsg(args, callback){

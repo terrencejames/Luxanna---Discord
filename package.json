@@ -12,6 +12,7 @@
     "discord.io": "github:woor/discord.io#gateway_v6",
     "nodemailer": "^4.4.0",
     "request": "^2.83.0",
+    "request-promise": "^4.2.2",
     "requests": "^0.2.2",
     "winston": "^2.4.0"
   }

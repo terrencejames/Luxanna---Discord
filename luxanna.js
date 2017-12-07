@@ -44,6 +44,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
         if (cmd in commands){
             commands[cmd](args, function(result){
+                console.log(result);
                 bot.sendMessage({
                     to: channelID,
                     message: result
