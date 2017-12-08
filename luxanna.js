@@ -55,7 +55,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         else {
             bot.sendMessage({
                 to: channelID,
-                message: "Not a valid command! Try !help for a list of commands."
+                message: "```Not a valid command! Try !help for a list of commands.```"
             });
         }
 

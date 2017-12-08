@@ -63,7 +63,7 @@ var championgg = {
 		})
 		.then(counters => {
 			console.log(counters);
-			results = `Top 5 Counters for ${champion_name}: \n`;
+			results = `Top 5 Counters for ${champion_name} (Data still needs to account for troll games): \n`;
 			for (var i = 0; i < 5; i++){
 				results += `\n ${i+1}. ${championgg.getChampionNameFromId(counters[i][0])}`;
 			}
