@@ -47,9 +47,62 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 console.log(result);
                 bot.sendMessage({
                     to: channelID,
-                    message: result
+                    message: result,
+                    typing: 1000
+                }, function(err, res){ 
+                    if (err) {
+                    console.log(err);
+                    throw err; 
+                    }
                 });
             }, bot, VCID, user);
+            bot.addReaction({
+            channelID: channelID,
+            messageID: evt.d.id,
+            reaction: "goldogre:308029606013960192"
+            }, function(err, res) {
+                if (err) { 
+                    console.log(err);
+                    throw err; }
+            });
+        }
+
+        else if (cmd == "dismiss"){
+            if (userID == "81304855020314624"){
+                console.log(bot.users);
+                var serverID = bot.channels["152941706302455810"].guild_id;
+                for (var userID in bot.users){
+                    if (args[0].toLowerCase() == bot.users[userID].username.toLowerCase()){
+                        console.log("found user")
+                        var myID = userID;
+                    }
+                }
+                console.log(myID);
+                //var userID = bot.users[args[1]]
+                //81514066266292224
+                bot.sendMessage({
+                    to: channelID,
+                    message: `SEE YA ${args[0]}`,
+                    typing: 1000
+                }, function(err, res){ 
+                    if (err) {
+                    console.log(err);
+                    throw err; 
+                    }
+                });
+                bot.moveUserTo({
+                    serverID: serverID,
+                    userID: myID,
+                    channelID: auth.testkappa_token
+                })
+            }
+            else{
+                bot.sendMessage({
+                    to: channelID,
+                    message: `\`Error: You are not my master, ${user}.\``,
+                    typing: 1000
+                });
+            }
         }
 
         else {
@@ -57,7 +110,18 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 to: channelID,
                 message: "```Not a valid command! Try !help for a list of commands.```"
             });
+            bot.addReaction({
+            channelID: channelID,
+            messageID: evt.d.id,
+            reaction: "face:294574806815342593"
+            }, function(err, res) {
+                if (err) { 
+                    console.log(err);
+                    throw err; }
+            });
         }
+        
+
 
 
             // Just add any case commands if you want to..

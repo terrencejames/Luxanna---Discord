@@ -20,7 +20,6 @@ const positions = {
 
 var championgg = {
 	topFiveBans: function(args, callback){
-		body.data = []
 		ids = []
 		championgg_url = `http://api.champion.gg/v2/champions?sort=banRate-desc&limit=5&api_key=${auth.championgg_token}`;
 		return request.get(championgg_url)
