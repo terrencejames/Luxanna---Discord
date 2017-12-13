@@ -20,7 +20,7 @@ var sms = {
 
   sendText: function(args, callback, {}, {}, user) {
      if (args[0].toLowerCase() in authen.smscontacts){
-     	   mailOptions.to = authen.smscontacts[args[0]]
+     	   mailOptions.to = authen.smscontacts[args[0].toLowerCase()]
      	   mailOptions.text = `DO NOT REPLY. ${user} messaged you from Kappa Pride: ${args.slice(1).join(' ')}`
      	   transporter.sendMail(mailOptions, function (err, info) {
   		   if(err){
