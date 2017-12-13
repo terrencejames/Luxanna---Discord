@@ -49,17 +49,18 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
         if (cmd in commands){
             commands[cmd](args, function(result){
-                console.log(result);
-                bot.sendMessage({
-                    to: channelID,
-                    message: result,
-                    typing: 1000
-                }, function(err, res){ 
-                    if (err) {
-                    console.log(err);
-                    throw err; 
-                    }
-                });
+                if (result) {
+                    bot.sendMessage({
+                        to: channelID,
+                        message: result,
+                        typing: 1000
+                    }, function(err, res){ 
+                        if (err) {
+                        console.log(err);
+                        throw err; 
+                        }
+                    });
+                }
             }, bot, VCID, user);
             bot.addReaction({
             channelID: channelID,
