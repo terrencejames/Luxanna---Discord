@@ -16,22 +16,32 @@ var transporter = nodemailer.createTransport({
     }
 });
 
-function sendText(args, callback, {}, {}, user) {
-   if (args[0] in authen.smscontacts){
-   	   mailOptions.to = authen.smscontacts[args[0]]
-   	   mailOptions.text = `${user} messaged you from Kappa Pride: ${args.slice(1).join(' ')}`
-   	   transporter.sendMail(mailOptions, function (err, info) {
-		   if(err){
-		     console.log(err)
-		   }
-		   else{
-		     console.log(info);
-		     callback(`Successfully sent message: ${args.slice(1).join(' ')} to ${args[0]} from ${user}`)
-		   }
-   		});
-   }
-   else
-   	callback(`Error: ${args[0]} is not in contacts list.`)
+var sms = {
+
+  sendText: function(args, callback, {}, {}, user) {
+     if (args[0].toLowerCase() in authen.smscontacts){
+     	   mailOptions.to = authen.smscontacts[args[0]]
+     	   mailOptions.text = `DO NOT REPLY. ${user} messaged you from Kappa Pride: ${args.slice(1).join(' ')}`
+     	   transporter.sendMail(mailOptions, function (err, info) {
+  		   if(err){
+  		     console.log(err)
+  		   }
+  		   else{
+  		     console.log(info);
+  		     callback(`Successfully sent message: ${args.slice(1).join(' ')} to ${args[0]} from ${user}`)
+  		   }
+     		});
+     }
+     else
+     	callback(`Error: ${args[0]} is not in contacts list.`)
+  },
+  getContacts: function(args, callback){
+      var result = "Contacts: \n";
+      for (var contact in authen.smscontacts){
+        result += `${contact} \n`;
+      }
+      callback(`\`\`\`${result}\`\`\``);
+  }
 }
 
-module.exports.sendText = sendText;
+module.exports = sms;

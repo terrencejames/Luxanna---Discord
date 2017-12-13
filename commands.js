@@ -24,7 +24,8 @@ const cmdList = {
 	"text": text.sendText,
 	"rapgod": rapgod.rapgod,
 	"bans": championgg.topFiveBans,
-	"whocounters": championgg.findCounter
+	"whocounters": championgg.findCounter,
+	"contacts": text.getContacts
 }
 
 function helpmsg(args, callback){
@@ -32,7 +33,7 @@ function helpmsg(args, callback){
 	for (var cmd in cmdList){
 		result += `!${cmd}\n`;
 	}
-	callback(result);
+	callback(`\`\`\`${result}\`\`\``);
 }
 
 function statusmsg(args, callback){
