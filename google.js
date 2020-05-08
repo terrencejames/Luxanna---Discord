@@ -24,7 +24,12 @@ var search = {
 			let json = JSON.parse(body)
 			return callback(json.items[0].link)
 		});
+	},
+
+	googleYoutube: function(query, callback) {
+		googleWeb(query.unshift("youtube "), callback);
 	}
 
 };
-module.exports = search; 
+
+module.exports = search;
