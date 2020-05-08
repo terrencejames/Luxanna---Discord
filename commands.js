@@ -20,12 +20,13 @@ const cmdList = {
 	"conch": conch.getConchResponse,
 	"level": riot.summonerLevel,
 	"rank": riot.summonerRank,
-	"transform": elements.transform, 
+	"transform": elements.transform,
 	"text": text.sendText,
 	"rapgod": rapgod.rapgod,
 	"bans": championgg.topFiveBans,
 	"whocounters": championgg.findCounter,
-	"contacts": text.getContacts
+	"contacts": text.getContacts,
+	"yt": google.googleYoutube
 }
 
 function helpmsg(args, callback){
