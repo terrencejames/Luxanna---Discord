@@ -27,7 +27,8 @@ var search = {
 	},
 
 	googleYoutube: function(query, callback) {
-		googleWeb(query.unshift("youtube "), callback);
+		query.unshift("youtube");
+		search.googleWeb(query, callback);
 	}
 
 };
