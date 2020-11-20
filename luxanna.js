@@ -22,7 +22,7 @@ bot.on('ready', function (evt) {
     logger.info(bot.username + ' - (' + bot.id + ')');
     bot.setPresence({
         game:{
-            name: "Rapgod"
+            name: "ME BROKEN"
         }
     });
 });
@@ -46,12 +46,13 @@ bot.on('messageCreate', function (message) {
 
         if (cmd in commands){
             commands[cmd](args, function(result){
+                console.log(result);
                 if (result) {
                     bot.createMessage(message.channel.id, result);
                 }
-            }, bot, VCID, user.username);
+            });
             bot.addMessageReaction(message.channel.id, message.id,
-                "goldogre:308029606013960192");
+                ":peepoBlushCowboy:776066523025375252");
         }
 
         // else if (cmd == "dismiss"){
@@ -94,9 +95,9 @@ bot.on('messageCreate', function (message) {
 
         else {
             bot.createMessage(message.channel.id,
-                "Not a valid command! Try !help for a list of commands.");
+                "```Not a valid command! Try !help for a list of commands.```");
             bot.addMessageReaction(message.channel.id, message.id,
-                "face:294574806815342593");
+                ":pensiveCowboy:770418781599039501");
         }
 
 
