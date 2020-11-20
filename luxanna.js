@@ -48,7 +48,7 @@ bot.on('messageCreate', function (message) {
             commands[cmd](args, function(result){
                 if (result) {
                     bot.createMessage({
-                        channelId: message.channel.id,
+                        channelID: message.channel.id,
                         content: result
                     }, function(err, res){
                         if (err) {
@@ -110,7 +110,7 @@ bot.on('messageCreate', function (message) {
         else {
             bot.createMessage({
                 channelID: message.channel.id,
-                content: "```Not a valid command! Try !help for a list of commands.```"
+                content: "Not a valid command! Try !help for a list of commands."
             });
             bot.addMessageReaction({
             channelID: message.channel.id,
