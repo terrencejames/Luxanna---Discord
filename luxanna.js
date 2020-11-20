@@ -1,5 +1,5 @@
 
-var Discord = require('eris');
+var Eris = require('eris');
 var logger = require('winston');
 var auth = require('./auth.json');
 var commands = require('./commands.js').cmdList;
