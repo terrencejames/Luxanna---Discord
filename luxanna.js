@@ -50,11 +50,6 @@ bot.on('messageCreate', function (message) {
                     bot.createMessage({
                         channelID: message.channel.id,
                         content: result
-                    }, function(err, res){
-                        if (err) {
-                        console.log(err);
-                        throw err;
-                        }
                     });
                 }
             }, bot, VCID, user.username);
@@ -62,10 +57,6 @@ bot.on('messageCreate', function (message) {
             channelID: message.channel.id,
             messageID: message.id,
             reaction: "goldogre:308029606013960192"
-            }, function(err, res) {
-                if (err) {
-                    console.log(err);
-                    throw err; }
             });
         }
 
@@ -116,10 +107,6 @@ bot.on('messageCreate', function (message) {
             channelID: message.channel.id,
             messageID: message.id,
             reaction: "face:294574806815342593"
-            }, function(err, res) {
-                if (err) {
-                    console.log(err);
-                    throw err; }
             });
         }
 
