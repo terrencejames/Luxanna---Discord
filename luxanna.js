@@ -47,17 +47,11 @@ bot.on('messageCreate', function (message) {
         if (cmd in commands){
             commands[cmd](args, function(result){
                 if (result) {
-                    bot.createMessage({
-                        channelID: message.channel.id,
-                        content: result
-                    });
+                    bot.createMessage(message.channel.id, result);
                 }
             }, bot, VCID, user.username);
-            bot.addMessageReaction({
-            channelID: message.channel.id,
-            messageID: message.id,
-            reaction: "goldogre:308029606013960192"
-            });
+            bot.addMessageReaction(message.channel.id, message.id,
+                "goldogre:308029606013960192");
         }
 
         // else if (cmd == "dismiss"){
@@ -99,15 +93,10 @@ bot.on('messageCreate', function (message) {
         //}
 
         else {
-            bot.createMessage({
-                channelID: message.channel.id,
-                content: "Not a valid command! Try !help for a list of commands."
-            });
-            bot.addMessageReaction({
-            channelID: message.channel.id,
-            messageID: message.id,
-            reaction: "face:294574806815342593"
-            });
+            bot.createMessage(message.channel.id,
+                "Not a valid command! Try !help for a list of commands.");
+            bot.addMessageReaction(message.channel.id, message.id,
+                "face:294574806815342593");
         }
 
 
