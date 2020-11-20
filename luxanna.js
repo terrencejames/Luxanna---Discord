@@ -37,8 +37,8 @@ bot.on("disconnect", function(err, code) {
 bot.on('messageCreate', function (message) {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
-    if (message.substring(0, 1) == '!') {
-        var args = message.substring(1).split(' ');
+    if (message.content.substring(0, 1) == '!') {
+        var args = message.content.substring(1).split(' ');
         var cmd = args[0];
 
         args = args.splice(1);
