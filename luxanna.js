@@ -3,8 +3,9 @@ var Eris = require('eris');
 var logger = require('winston');
 var auth = require('./auth.json');
 var commands = require('./commands.js').cmdList;
+var tiktok = require('./tiktok.js');
 var VCID = auth.kappa_token;
-
+var regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -35,6 +36,14 @@ bot.on("disconnect", function(err, code) {
 });
 
 bot.on('messageCreate', function (message) {
+    if (message.content.match(regex) && message.content.includes("tiktok")){
+      console.log("tiktok");
+      tiktok.getTikTokData(message.content, function(result){
+        if (result){
+          bot.createMessage(message.channel.id, result);
+        }
+      });
+    }
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
     if (message.content.substring(0, 1) == '!') {
