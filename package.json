@@ -8,7 +8,8 @@
     "start": "node luxanna.js"
   },
   "dependencies": {
-    "eris": "^0.14.0"
+    "eris": "^0.14.0",
+    "tiktok-scraper": "^1.4.22"
   },
   "devDependencies": {
     "nodemailer": "^4.4.0",
