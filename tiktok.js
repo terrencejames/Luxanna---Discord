@@ -1,4 +1,5 @@
 const request = require('request');
+const TikTokScraper = require('tiktok-scraper');
 
 function getTikTokData(url, callback){
   unshortenUrl(url, callback);
@@ -13,8 +14,10 @@ function unshortenUrl(url, callback){
 
 function grabTikTokContents(url, callback){
     var requestUrl = `https://www.tiktok.com/oembed?url=${url}`;
-    request.get(requestUrl, (error, response, body) => {
+    request.get(requestUrl, async (error, response, body) => {
       if (error) return;
+      let videoMeta = await getVideoMeta(url);
+      let user = await getUserData(videoMeta.authorMeta.name);
       body = JSON.parse(body);
       console.log(body);
       let embed = {
@@ -23,7 +26,8 @@ function grabTikTokContents(url, callback){
                 description: body.title,
                 author: {
                   name: body.author_name,
-                  url: body.author_url
+                  url: body.author_url,
+                  icon_url: user.user.avatarThumb
                 },
                 provider: {
                   name: body.provider_name,
@@ -35,15 +39,45 @@ function grabTikTokContents(url, callback){
                   height: body.thumbnail_height,
                   width: body.thumbnail_width
                 },
-                color: 0x008000,
+                color: 0x000000,
                 footer: {
                   text: "TikTok"
-                }
+                },
+                fields: [
+                  {
+                    name: "Plays",
+                    value: videoMeta.playCount,
+                    inline: false
+                  },
+                  {
+                    name: "Likes",
+                    value: videoMeta.diggCount,
+                    inline: false
+                  }
+                ]
             }
       };
       console.log(embed);
       callback(embed);
     });
+}
+
+async function getVideoMeta(url){
+  try {
+    const videoData = await TikTokScraper.getVideoMeta(url, null);
+    return videoData.collector[0];
+    } catch (error) {
+  console.log(error);
+  }
+}
+
+async function getUserData(username) {
+    try {
+        const user = await TikTokScraper.getUserProfileInfo(username, null);
+        return user;
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 module.exports.getTikTokData = getTikTokData;
