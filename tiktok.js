@@ -4,12 +4,18 @@ const TikTokScraper = require('tiktok-scraper');
 function getTikTokData(url, callback){
   unshortenUrl(url, callback);
 }
+
 function unshortenUrl(url, callback){
-  request.get(url, (error, response, body) => {
-    if (error) return;
-    if (response.request.href != null)
-      grabTikTokContents(response.request.href, callback);
-  });
+  if (url.includes("vm.tiktok")){
+    request.get(url, (error, response, body) => {
+      if (error) return;
+      if (response.request.href != null)
+        grabTikTokContents(response.request.href, callback);
+    });
+  }
+  else{
+    grabTikTokContents(url, callback);
+  }
 }
 
 function grabTikTokContents(url, callback){
