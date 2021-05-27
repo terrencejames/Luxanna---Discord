@@ -6,6 +6,7 @@ var text = require('./sms.js');
 var audio = require('./playaudio.js');
 var rapgod = require('./rapgod.js');
 var championgg = require('./championgg.js');
+var tester = require('./test.js');
 
 
 const cmdList = {
@@ -15,6 +16,7 @@ const cmdList = {
 	"laugh": elements.laugh,
 	"status": statusmsg,
 	"help": helpmsg,
+	"test": tester.tester,
 	//"info": info,
 	//"repeat": repeat,
 	"conch": conch.getConchResponse,

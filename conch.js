@@ -1,5 +1,5 @@
 const conchresponses = ['Maybe someday.', 'Nothing.', 'Neither.', 'I don\'t think so.', 
-                            'No.', 'Yes.', 'Try asking again.']
+                            'No.', 'Yes.', 'Try asking again.', '(Sassy) Nooo']
 
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
@@ -8,7 +8,7 @@ function getRandomIntInclusive(min, max) {
 }
 
 function getConchResponse(args, callback) {
-	callback(conchresponses[getRandomIntInclusive(0, 6)])
+	callback(conchresponses[7])
 }
 
 module.exports.getConchResponse = getConchResponse;
