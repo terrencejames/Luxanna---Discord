@@ -1,6 +1,6 @@
 const request = require('request-promise');
 const lol_champs = require('./lol_champs.json')[0]["data"];
-var auth = require('./auth.json');
+var auth = require('./../auth.json');
 
 const positions = {
   top: 'TOP',
@@ -107,9 +107,9 @@ var championgg = {
 			champ = lol_champs[champion_names[i]];
 			if (champ["id"] == id)
 				return champ["name"];
-		} 
+		}
 		return "Champ not in database!";
-		
+
 	},
 	getChampionIdFromName: function(name){
 		var champion_names = Object.keys(lol_champs);
@@ -117,7 +117,7 @@ var championgg = {
 			champ = lol_champs[champion_names[i]];
 			if (champ["name"].toLowerCase() == name)
 				return champ["id"];
-		} 
+		}
 		return -1;
 	},
 	getBans: function(ids, results, count=1){
@@ -154,7 +154,7 @@ var championgg = {
 			//console.log(results);
 			return results;
 		});
-		
+
 		// console.log("hi");
 		// return results;
 	}

@@ -3,7 +3,7 @@ var Eris = require('eris');
 var logger = require('winston');
 var auth = require('./auth.json');
 var commands = require('./commands.js').cmdList;
-var tiktok = require('./tiktok.js');
+var tiktok = require('./commands/tiktok.js');
 var VCID = auth.kappa_token;
 var regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
 

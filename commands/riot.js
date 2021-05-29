@@ -1,8 +1,8 @@
 const request = require('request');
-var auth = require('./auth.json');
+var auth = require('./../auth.json');
 
 
-var summoner = {};	
+var summoner = {};
 var summonerId;
 // var summonerName;
 // var summonerURL = `https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/
@@ -52,7 +52,7 @@ var summoner = {
 			});
 		});
 			//console.log(summonerId);
-		
+
 
 		// request.get(leagueURL, (error, response, body) => {
 		// 	let json = JSON.parse(body);
