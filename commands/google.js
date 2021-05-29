@@ -1,5 +1,5 @@
 const request = require('request');
-var auth = require('./auth.json');
+var auth = require('./../auth.json');
 
 var search = {
 	googleWeb: function(query, callback) {

@@ -1,4 +1,4 @@
-var authen = require('./auth.json');
+var authen = require('./../auth.json');
 const nodemailer = require('nodemailer');
 
 var mailOptions = {
