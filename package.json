@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "eris": "^0.14.0",
-    "tiktok-scraper": "^1.4.22"
+    "scraper-instagram": "^1.0.17",
+    "tiktok-scraper": "^1.4.22",
+    "url-parse": "^1.5.1"
   },
   "devDependencies": {
     "nodemailer": "^4.4.0",
