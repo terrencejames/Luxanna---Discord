@@ -40,7 +40,7 @@ function grabTikTokContents(url, callback){
                   url: body.provider_url
                 },
                 url: url,
-                thumbnail: {
+                image: {
                   url: body.thumbnail_url,
                   height: body.thumbnail_height,
                   width: body.thumbnail_width
