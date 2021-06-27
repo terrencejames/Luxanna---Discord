@@ -1,11 +1,14 @@
 const request = require('request');
+var logger = require('winston');
 const TikTokScraper = require('tiktok-scraper');
+const truncate = require('truncate');
 
 function getTikTokData(url, callback){
   unshortenUrl(url, callback);
 }
 
 function unshortenUrl(url, callback){
+  logger.info("Attempting to unshorten TikTok url: " + url);
   if (url.includes("vm.tiktok")){
     request.get(url, (error, response, body) => {
       if (error) return;
@@ -19,16 +22,19 @@ function unshortenUrl(url, callback){
 }
 
 function grabTikTokContents(url, callback){
+    logger.info("Retrieving contents from: " + url);
     var requestUrl = `https://www.tiktok.com/oembed?url=${url}`;
     request.get(requestUrl, async (error, response, body) => {
       if (error) return;
       let videoMeta = await getVideoMeta(url);
-      let user = await getUserData(videoMeta.authorMeta.name);
+      logger.info("Video meta: " + videoMeta);
+      let user = videoMeta != null ? await getUserData(videoMeta.authorMeta.name) : null;
+      logger.info("User data: " + user);
       body = JSON.parse(body);
-      console.log(body);
+      logger.info("Body: " + body);
       let embed = {
         embed: {
-                title: body.title,
+                title: truncate(body.title, 50),
                 description: body.title,
                 author: {
                   name: body.author_name,
@@ -73,7 +79,7 @@ async function getVideoMeta(url){
     const videoData = await TikTokScraper.getVideoMeta(url, null);
     return videoData.collector[0];
     } catch (error) {
-  console.log(error);
+      logger.info(error);
   }
 }
 
@@ -82,7 +88,7 @@ async function getUserData(username) {
         const user = await TikTokScraper.getUserProfileInfo(username, null);
         return user;
     } catch (error) {
-        console.log(error);
+      logger.info(error);
     }
 }
 
