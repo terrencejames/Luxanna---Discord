@@ -39,7 +39,7 @@ function grabTikTokContents(url, callback){
                 author: {
                   name: body.author_name,
                   url: body.author_url,
-                  icon_url: user?.user?.avatarThumb
+                  icon_url: user ?? ""
                 },
                 provider: {
                   name: body.provider_name,
@@ -58,12 +58,12 @@ function grabTikTokContents(url, callback){
                 fields: [
                   {
                     name: "Plays",
-                    value: videoMeta?.playCount,
+                    value: videoMeta ?? "",
                     inline: false
                   },
                   {
                     name: "Likes",
-                    value: videoMeta?.diggCount,
+                    value: videoMeta ?? "",
                     inline: false
                   }
                 ]
