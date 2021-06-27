@@ -38,7 +38,7 @@ bot.on("disconnect", function(err, code) {
 
 bot.on('messageCreate', function (message) {
     if (message.content.match(regex) && message.content.includes("tiktok")){
-      console.log("tiktok");
+      logger.info("Embedding TikTok");
       tiktok.getTikTokData(message.content, function(result){
         if (result){
           bot.createMessage(message.channel.id, result);
@@ -46,7 +46,7 @@ bot.on('messageCreate', function (message) {
       });
     }
     else if (message.content.match(regex) && message.content.includes("instagram")){
-      console.log("ig");
+      logger.info("Embedding Instagram");
       ig.getIgPost(message.content, function(result){
         if (result){
           bot.createMessage(message.channel.id, result);
@@ -61,11 +61,11 @@ bot.on('messageCreate', function (message) {
         var cmd = args[0];
 
         args = args.splice(1);
-        console.log(cmd);
+        logger.info("Command: " + cmd);
 
         if (cmd in commands){
             commands[cmd](args, function(result){
-                console.log(result);
+              logger.info("Result: " + result);
                 if (result) {
                     bot.createMessage(message.channel.id, result);
                 }
@@ -119,12 +119,11 @@ bot.on('messageCreate', function (message) {
                 ":pensiveCowboy:770418781599039501");
         }
 
-
-
-
             // Just add any case commands if you want to..
 
      }
 });
 
 bot.connect();
+
+module.exports = logger;
