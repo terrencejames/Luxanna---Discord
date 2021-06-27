@@ -28,7 +28,7 @@ function grabTikTokContents(url, callback){
       if (error) return;
       let videoMeta = await getVideoMeta(url);
       logger.info("Video meta: " + videoMeta);
-      let user = videoMeta != null ? await getUserData(videoMeta.authorMeta.name) : null;
+      let user = videoMeta != null ? await getUserData(videoMeta?.authorMeta?.name) : null;
       logger.info("User data: " + user);
       body = JSON.parse(body);
       logger.info("Body: " + body);
@@ -39,7 +39,7 @@ function grabTikTokContents(url, callback){
                 author: {
                   name: body.author_name,
                   url: body.author_url,
-                  icon_url: user.user.avatarThumb
+                  icon_url: user?.user?.avatarThumb
                 },
                 provider: {
                   name: body.provider_name,
@@ -58,12 +58,12 @@ function grabTikTokContents(url, callback){
                 fields: [
                   {
                     name: "Plays",
-                    value: videoMeta.playCount,
+                    value: videoMeta?.playCount,
                     inline: false
                   },
                   {
                     name: "Likes",
-                    value: videoMeta.diggCount,
+                    value: videoMeta?.diggCount,
                     inline: false
                   }
                 ]
