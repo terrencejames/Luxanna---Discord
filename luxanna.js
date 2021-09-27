@@ -5,8 +5,10 @@ var auth = require('./auth.json');
 var commands = require('./commands.js').cmdList;
 var tiktok = require('./commands/tiktok.js');
 var ig = require('./commands/instagram.js');
+var yelp = require('./commands/yelp.js');
 var VCID = auth.kappa_token;
 var regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
+var fs = require("fs");
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -49,6 +51,15 @@ bot.on('messageCreate', function (message) {
     else if (message.content.match(regex) && message.content.includes("instagram")){
       logger.info("Embedding Instagram");
       ig.getIgPost(message.content, function(result){
+        if (result){
+          bot.createMessage(message.channel.id, result);
+        }
+      });
+    }
+    else if (message.content.match(regex) && message.content.includes("yelp")){
+      logger.info("Embedding Yelp");
+      yelp.getYelpInfo(message.content, function(result){
+        logger.info("Sending Yelp embed");
         if (result){
           bot.createMessage(message.channel.id, result);
         }
@@ -119,10 +130,50 @@ bot.on('messageCreate', function (message) {
             bot.addMessageReaction(message.channel.id, message.id,
                 ":pensiveCowboy:770418781599039501");
         }
-
             // Just add any case commands if you want to..
-
      }
+});
+
+bot.on("voiceChannelJoin", (member, channel) => {
+    // bot.joinVoiceChannel(channel.id).then((connection) => {
+    //
+    //   connection.on("speakingStart", (userID) => {
+    //     console.log(userID);
+    //
+    //     if (connection.paused) {
+    //       console.log("resume");
+    //       connection.resume();
+    //     }
+    //     else {
+    //       connection.play("./resources/audio/mysticLaugh.oga");
+    //       connection.once("end", () => connection.stopPlaying());
+    //     }
+    //
+    //   })
+    //
+    //   connection.on("speakingStop", (userID) => {
+    //     console.log(userID);
+    //
+    //            if (connection.playing) {
+    //       console.log("pause");
+    //       connection.pause();
+    //     }
+    //   })
+    //
+    //   connection.on("error", (err) => {
+    //     console.log(err);
+    //   })
+    //
+    //   if (connection.playing) {
+    //     console.log("Stop playing");
+    //     connection.stopPlaying();
+    //   }
+    //
+    //   // connection.on("ready", () => {
+    //   //     console.log("hello2");
+    //   //     connection.play("./resources/audio/iceLaugh.oga");
+    //   // });
+    // }).catch(err => console.log(err));
 });
 
 bot.connect();
