@@ -26,7 +26,8 @@ const cmdList = {
 	//"bans": championgg.topFiveBans,
 	//"whocounters": championgg.findCounter,
 	//"contacts": text.getContacts,
-	"yt": google.googleYoutube
+	"yt": google.googleYoutube,
+	"ai": google.googleGemini
 }
 
 function helpmsg(args, callback){

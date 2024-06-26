@@ -8,6 +8,7 @@
     "start": "node luxanna.js"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.13.0",
     "eris": "^0.14.0",
     "scraper-instagram": "^1.0.17",
     "tiktok-scraper": "^1.4.32",
