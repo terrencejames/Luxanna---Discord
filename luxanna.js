@@ -40,15 +40,7 @@ bot.on("disconnect", function(err, code) {
 });
 
 bot.on('messageCreate', function (message) {
-    if (message.content.match(regex) && message.content.includes("tiktok")){
-      logger.info("Embedding TikTok");
-      tiktok.getTikTokData(message.content, function(result){
-        if (result){
-          bot.createMessage(message.channel.id, result);
-        }
-      });
-    }
-    else if (message.content.match(regex) && message.content.includes("instagram")){
+    if (message.content.match(regex) && message.content.includes("instagram")){
       logger.info("Embedding Instagram");
       ig.getIgPost(message.content, function(result){
         if (result){
